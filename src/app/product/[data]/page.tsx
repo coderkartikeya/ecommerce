@@ -2,42 +2,39 @@
 import React, { useEffect, useState } from 'react'
 import Taskbar from '../../components/Taskbar'
 import { useSearchParams } from 'next/navigation'
+// import { useRouter } from 'next/router'
 
 
 const data = () => {
-  const [data,getData]=useState([]);
+  const [data,setData]=useState([]);
   const searchParams=useSearchParams();
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [pageSize] = useState(10); // Adjust page size if needed
-  const [total, setTotal] = useState(0);
 
+  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await fetch('/api/products', {
+        const res = await fetch('/api/data', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ page: parseInt(page, 10), pageSize }),
+          body: JSON.stringify({ category: searchParams.get('category') }),
         });
         const result = await res.json();
-        setProducts(result.data);
-        setTotal(result.total);
+        setData(result.category)
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
         setLoading(false);
       }
     };
+    fetchData();
 
-    if (page) {
-      fetchData();
-    }
-  }, [page, pageSize]);
-  const totalPages = Math.ceil(total / pageSize);
+    
+  }, []);
+  console.log(searchParams.get('category'))
 
   
   

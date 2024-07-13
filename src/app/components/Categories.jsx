@@ -16,14 +16,20 @@ const Categories = () => {
             </div>
             
         </Link>
-        <Link href={`#`}>
+        <Link href={{
+            pathname: '/product',
+            query: { category: 'Tvs' }
+        }}>
         <div className='flex flex-col hover:shadow-md hover:shadow-bg-slate-100 items-center rounded-md p-2 xs:w-[30px] xs:h-[30px]'>
                 <Image src={`/tvs.jpeg`} height={70} width={70} className="xs:w-[50px] xs:h-[50px]" alt='image'/>
                 <h1>Televisions</h1>
 
             </div>
         </Link>
-        <Link href={`#`}>
+        <Link href={{
+            pathname: '/product',
+            query: { category: 'food' }
+        }}>
         <div className='flex flex-col hover:shadow-md hover:shadow-bg-slate-100 items-center rounded-md p-2'>
                 <Image src={`/food.jpeg`} height={70} width={70} className="xs:w-[50px] xs:h-[50px]" alt='image'/>
                 <h1>Food</h1>

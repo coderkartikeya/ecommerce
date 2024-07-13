@@ -1,6 +1,8 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import mobile from '../../../../json/mobile.json'
+import tvs from '../../../../json/tvs.json'
+import food from '../../../../json/food.json'
 
 
 
@@ -24,23 +26,30 @@ export async function POST(req:any){
     try{
         
         const body = await req.json();
-        const { page = 1, pageSize = 10 } = body;
-
-        const startIndex = (page - 1) * pageSize;
-        const endIndex = startIndex + pageSize;
-        const paginatedData = mobile.slice(startIndex, endIndex);
+        
+        
         
         if(body.category==='Mobile Phones'){
             return NextResponse.json({
                 status: 200,
-                data: paginatedData,
-                page,
-                pageSize,
-                total: mobile.length,
+                result: mobile
 
             })
             
-        }else{
+        }else if(body.category==='Tvs'){
+            return NextResponse.json({
+                status: 200,
+                result: tvs
+                })
+                }
+        else if(body.category==='food'){
+            return NextResponse.json({
+                status: 200,
+                result: food
+                })
+
+        }
+        else{
             return NextResponse.json({
                 status:200,
                 result:"mobile"
