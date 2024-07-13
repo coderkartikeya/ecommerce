@@ -1,6 +1,7 @@
 // components/Carousel.js
 'use client'
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,7 +30,7 @@ const Carousel = () => {
               index === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <img src={image} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+            <Image src={image} alt={`Slide ${index + 1}`} height={400} width={500} className="w-full h-full object-cover" />
           </div>
         ))}
       </div>
